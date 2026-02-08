@@ -1,0 +1,5 @@
+{
+  "name": "Assistente de Estudos IA",
+  "description": "Uma aplicação SaaS de assistência de estudos que gera quizzes, resumos e flashcards a partir de materiais em PDF para ajudar os alunos a aprender de forma mais eficaz.",
+  "requestFramePermissions": []
+}
