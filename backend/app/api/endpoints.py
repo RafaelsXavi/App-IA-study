@@ -5,16 +5,16 @@ import time
 from fastapi import APIRouter, UploadFile, File, HTTPException, status, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.services import text_processor, ai_service
-from app.schemas.upload import PDFProcessResponse
-from app.schemas.summary import SummaryRequest, SummaryResponse
-from app.schemas.generation import (
+from ..services import text_processor, ai_service
+from ..schemas.upload import PDFProcessResponse
+from ..schemas.summary import SummaryRequest, SummaryResponse
+from ..schemas.generation import (
     QuizRequest, QuizResponse,
     FlashcardRequest, FlashcardResponse,
     StudyPlanRequest, StudyPlanResponse,
     QuestionRequest, QuestionResponse
 )
-from app.database import get_db
+from ..database.database import get_db
 
 router = APIRouter()
 logger = logging.getLogger(__name__)

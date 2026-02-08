@@ -8,9 +8,9 @@ from typing import List, IO
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import HTTPException, status
 
-from app.core.config import CHUNK_SIZE, CHUNK_OVERLAP
-from app.services.ai_service import call_google_ai_for_summary
-from app.repositories import summary_cache_repository
+from ..core.config import CHUNK_SIZE, CHUNK_OVERLAP
+from .ai_service import call_google_ai_for_summary
+from ..repositories import summary_cache_repository
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
