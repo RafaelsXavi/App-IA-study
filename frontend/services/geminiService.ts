@@ -1,56 +1,8 @@
+
+import { apiClient } from './apiClient';
 import type { QuizQuestion, Flashcard, StudentLevel, MultipleChoiceQuestion, QuestionDifficulty } from '../types';
 
-// This file combines apiClient and geminiService logic to resolve module issues
-// without creating new files.
-
-// --- apiClient logic ---
-const isLocal = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
-const API_BASE_URL = isLocal ? 'http://localhost:8000/api/v1' : '/api/v1';
-
-/**
- * Realiza uma requisição à API do backend.
- * @param endpoint O caminho do endpoint (ex: /generate-summary).
- * @param options As opções da requisição, como método, cabeçalhos e corpo.
- * @returns A resposta da API em formato JSON.
- * @throws Uma exceção se a requisição falhar.
- */
-async function apiClient<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
-  const { method = 'GET', headers = {}, body = null } = options;
-
-  const config: RequestInit = {
-    method,
-    headers: {
-      'Content-Type': 'application/json',
-      ...headers,
-    },
-  };
-
-  if (body) {
-    config.body = body;
-  }
-
-  try {
-    const response = await fetch(`${API_BASE_URL}${endpoint}`, config);
-
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({ detail: response.statusText }));
-      throw new Error(errorData.detail || 'Ocorreu um erro na comunicação com o servidor.');
-    }
-
-    if (response.status === 204) {
-      return {} as T;
-    }
-
-    return await response.json() as T;
-
-  } catch (error) {
-    console.error(`API Client Error: ${error}`);
-    throw error;
-  }
-}
-
-// --- geminiService logic ---
-
+// Tipos para as respostas da API
 interface SummaryResponse { summary: string; }
 interface QuizResponse { quiz: QuizQuestion[]; }
 interface FlashcardResponse { flashcards: Flashcard[]; }
