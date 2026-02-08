@@ -10,7 +10,7 @@ export const EmptyState: React.FC = () => {
       </div>
       <h3 className="text-xl font-semibold text-text-primary">Pronto para começar?</h3>
       <p className="mt-2 max-w-sm">
-        Cole seu material de estudo, escolha uma ferramenta e clique em 'Gerar' para transformar seu conteúdo em resumos, quizzes ou flashcards interativos.
+        Carregue um PDF com seu material de estudo, escolha uma ferramenta e clique em 'Gerar' para transformar seu conteúdo em resumos, quizzes ou flashcards interativos.
       </p>
     </div>
   );

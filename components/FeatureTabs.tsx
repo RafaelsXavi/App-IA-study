@@ -6,6 +6,7 @@ import { ListIcon } from './icons/ListIcon';
 import { CardsIcon } from './icons/CardsIcon';
 import { SparklesIcon } from './icons/SparklesIcon';
 import { CalendarIcon } from './icons/CalendarIcon';
+import { QuestionIcon } from './icons/QuestionIcon';
 
 interface FeatureTab {
   id: Feature;
@@ -18,6 +19,7 @@ const features: FeatureTab[] = [
   { id: 'quiz', label: 'Quiz', icon: ListIcon },
   { id: 'flashcards', label: 'Flashcards', icon: CardsIcon },
   { id: 'plano', label: 'Plano', icon: CalendarIcon },
+  { id: 'perguntas', label: 'Perguntas', icon: QuestionIcon },
 ];
 
 interface FeatureTabsProps {
@@ -35,9 +37,12 @@ export const FeatureTabs: React.FC<FeatureTabsProps> = ({ activeFeature, onSelec
     }
   };
 
+  // Adjust grid columns based on number of features
+  const gridColsClass = features.length > 4 ? 'grid-cols-3' : 'grid-cols-2';
+
   return (
     <div className="space-y-4">
-      <div className="grid grid-cols-2 gap-2 bg-background p-1 rounded-lg">
+      <div className={`grid ${gridColsClass} gap-2 bg-background p-1 rounded-lg`}>
         {features.map((feature) => (
           <button
             key={feature.id}

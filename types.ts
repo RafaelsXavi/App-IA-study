@@ -1,9 +1,11 @@
 
-export type Feature = 'resumo' | 'quiz' | 'flashcards' | 'plano';
+export type Feature = 'resumo' | 'quiz' | 'flashcards' | 'plano' | 'perguntas';
 
 export type StudentLevel = 'Ensino Fundamental' | 'Ensino Médio' | 'Graduação';
-
 export const studentLevels: StudentLevel[] = ['Ensino Fundamental', 'Ensino Médio', 'Graduação'];
+
+export type QuestionDifficulty = 'Fácil' | 'Médio' | 'Difícil';
+export const questionDifficulties: QuestionDifficulty[] = ['Fácil', 'Médio', 'Difícil'];
 
 export interface QuizQuestion {
   pergunta: string;
@@ -16,4 +18,15 @@ export interface QuizQuestion {
 export interface Flashcard {
   frente: string;
   verso: string;
+}
+
+export interface MultipleChoiceQuestion {
+  pergunta: string;
+  alternativas: {
+    A: string;
+    B: string;
+    C: string;
+    D: string;
+  };
+  resposta_correta: 'A' | 'B' | 'C' | 'D';
 }

@@ -1,10 +1,11 @@
 
 import React from 'react';
-import type { Feature, QuizQuestion, Flashcard } from '../types';
+import type { Feature, QuizQuestion, Flashcard, MultipleChoiceQuestion } from '../types';
 import { SummaryView } from './SummaryView';
 import { QuizView } from './QuizView';
 import { FlashcardsView } from './FlashcardsView';
 import { StudyPlanView } from './StudyPlanView';
+import { QuestionsView } from './QuestionsView';
 import { EmptyState } from './EmptyState';
 
 interface ResultDisplayProps {
@@ -14,6 +15,7 @@ interface ResultDisplayProps {
     quiz: QuizQuestion[];
     flashcards: Flashcard[];
     plano: string;
+    perguntas: MultipleChoiceQuestion[];
   };
   isLoading: boolean;
 }
@@ -39,7 +41,8 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({ activeFeature, con
     (activeFeature === 'resumo' && !content.resumo) ||
     (activeFeature === 'quiz' && content.quiz.length === 0) ||
     (activeFeature === 'flashcards' && content.flashcards.length === 0) ||
-    (activeFeature === 'plano' && !content.plano);
+    (activeFeature === 'plano' && !content.plano) ||
+    (activeFeature === 'perguntas' && content.perguntas.length === 0);
 
   const renderContent = () => {
     if (isLoading) {
@@ -59,6 +62,8 @@ export const ResultDisplay: React.FC<ResultDisplayProps> = ({ activeFeature, con
         return <FlashcardsView flashcards={content.flashcards} />;
       case 'plano':
         return <StudyPlanView plan={content.plano} />;
+      case 'perguntas':
+        return <QuestionsView questions={content.perguntas} />;
       default:
         return <EmptyState />;
     }
